@@ -1,0 +1,10 @@
+{% extends 'amweb/base.html' %}
+{% load static %}
+{% block content %}
+	<h2>You have been Logged out of your buyer's account</h2>
+	<div class="border-top pt-3">
+		<small class="text-muted">
+			<h4>Login Again : <a class="ml-2 text-primary" href="{% url 'login_seller' %}">As A Seller</a> or <a class="ml-2 text-success" href="{% url 'login_buyer' %}">As A Buyer</a></h4>
+		</small>
+	</div>
+{% endblock content %}

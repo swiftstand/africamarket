@@ -1,0 +1,246 @@
+{% extends 'amweb/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+	<div class="contact-info-left">
+        <div class="content-section">
+            <div class="container">
+        		<div class="row">
+        				<div class="col-lg-12">
+                        	<div class="text-center section_heading section_heading_2">
+                                <h1 class="mb-2 btn btn-warning"> Store Shelfs </h1>
+                                {% if user.sellerprofile.store_name != '' %}
+                                    <h4 class="mb-4"><i>Owned And Manage By Store  <b class="text-success">{{user.sellerprofile.store_name}}</b><b class="text-success ml-2">{{user.username}} </b><b class="text-danger"> (note a shelf  is unactive until it has an item in it)</b></i></h4>
+                                {% else %}
+                                    <h4 class="mb-4"><i>Owned And Manage By Store  <mark class="text-danger">please set your store_name from your profile</mark><b class="text-success ml-2">{{user.username}} </b><b class="text-danger"> (note a shelf  is unactive until it has an item in it)</b></i></h4>
+                                {% endif %}
+                            </div>
+                        </div>
+        				<div>
+        					<div class="media">
+        						<img class="rounded-circle account-img" src="{{user.sellerprofile.shelfone.image.url}}">
+        						<div class="media-body">
+        							<h2><a class="btn btn-outline-info" href="{% url 'itemsone' user.store_name user.sellerprofile.shelfone.pk user.sellerprofile.shelfone.slug %}">{{user.sellerprofile.shelfone.shelf_name}}</a></h2>
+                                    {% if items_one_number <= shelfonediv %}
+                                        <p class="btn btn-success">{{items_one_number}}/{{sizeone}}</p>
+                                    {% elif items_one_number > shelfonediv %}
+                                        {% if items_one_number < sizeone %}
+                                            <p class="btn btn-warning"><b class="text-info">{{items_one_number}}/{{sizeone}}</b></p>
+                                        {% endif %}
+                                    {% else %}
+                                        <p class="btn btn-danger"><b class="text-info">{{items_one_number}}/{{sizeone}}</b></p>
+                                    {% endif %}
+                                    <h3><mark class="text-danger">Category: <b class="text-info">{{user.sellerprofile.shelfone.shelf_category}}</b></mark></h3>
+                                    <h2><a class="btn btn-warning" href="{% url 'shelfone-update' %}">Update {{user.sellerprofile.shelfone.shelf_name}} Shelf Info</a></h2>
+        						</div>
+        					</div>
+        				</div>
+        			{% if not user.sellerprofile.is_free %}
+        				<div>
+        					<div class="media">
+        						<img class="rounded-circle account-img" src="{{user.sellerprofile.shelftwo.image.url}}">
+        						<div class="media-body">
+        							<h2><a class="btn btn-outline-info" href="{% url 'itemstwo' user.store_name user.sellerprofile.shelftwo.pk user.sellerprofile.shelftwo.slug %}">{{user.sellerprofile.shelftwo.shelf_name}}</a></h2>
+                                    {% if items_two_number <= shelftwodiv %}
+                                        <p class="btn btn-success">{{items_two_number}}/{{sizetwo}}</p>
+                                    {% elif items_two_number > shelftwodiv %}
+                                        {% if items_two_number < sizetwo %}
+                                            <p class="btn btn-outline-warning"><b class="text-info">{{items_two_number}}/{{sizetwo}}</b></p>
+                                        {% endif %}
+                                    {% else %}
+                                        <p class="btn btn-danger"><b class="text-info">{{items_two_number}}/{{sizetwo}}</b></p>
+                                    {% endif %}
+                                    <h3><mark class="text-danger">Category: <b class="text-info">{{user.sellerprofile.shelftwo.shelf_category}}</b></mark></h3>
+                                    <h2><a class="btn btn-warning" href="{% url 'shelftwo-update' %}">Update {{user.sellerprofile.shelftwo.shelf_name}} Infos</a></h2>
+        						</div>
+        						<img class="rounded-circle account-img" src="{{user.sellerprofile.shelfthree.image.url}}">
+        						<div class="media-body">
+        							<h2><a class="btn btn-outline-info" href="{% url 'itemsthree' user.store_name user.sellerprofile.shelfthree.pk user.sellerprofile.shelfthree.slug %}">{{user.sellerprofile.shelfthree.shelf_name}}</a></h2>
+                                    {% if items_three_number <= shelfthreediv %}
+                                        <p class="btn btn-success">{{items_three_number}}/{{sizethree}}</p>
+                                    {% elif items_three_number > shelfthreediv %}
+                                        {% if items_three_number < sizethree %}
+                                            <p class="btn btn-outline-warning"><b class="text-info">{{items_three_number}}/{{sizethree}}</b></p>
+                                        {% endif %}
+                                    {% else %}
+                                        <p class="btn btn-danger"><b class="text-info">{{items_three_number}}/{{sizethree}}</b></p>
+                                    {% endif %}
+                                    <h3><mark class="text-danger">Category: <b class="text-info">{{user.sellerprofile.shelfthree.shelf_category}}</b></mark></h3>
+                                    <h2><a class="btn btn-warning" href="{% url 'shelfthree-update' %}">Update {{user.sellerprofile.shelfthree.shelf_name}} Info</a></h2>
+        						</div>
+        					</div>
+        				</div>
+            			{% if user.sellerprofile.is_diamond %}
+            				<div>
+            					<div class="media">
+            						<img class="rounded-circle account-img" src="{{user.sellerprofile.shelffour.image.url}}">
+            						<div class="media-body">
+            							<h2><a class="btn btn-outline-info" href="{% url 'itemsfour' user.store_name user.sellerprofile.shelffour.pk user.sellerprofile.shelffour.slug %}">{{user.sellerprofile.shelffour.shelf_name}}</a></h2>
+                                        {% if items_four_number <= shelffourdiv %}
+                                            <p class="btn btn-success">{{items_four_number}}/{{sizefour}}</p>
+                                        {% elif items_four_number > shelffourdiv %}
+                                            {% if items_four_number < sizefour %}
+                                                <p class="btn btn-outline-warning"><b class="text-info">{{items_four_number}}/{{sizefour}}</b></p>
+                                            {% endif %}
+                                        {% else %}
+                                            <p class="btn btn-danger"><b class="text-info">{{items_four_number}}/{{sizefour}}</b></p>
+                                        {% endif %}
+                                        <h3><mark class="text-danger">Category: <b class="text-info">{{user.sellerprofile.shelffour.shelf_category}}</b></mark></h3>
+                                        <h2><a class="btn btn-warning" href="{% url 'shelffour-update' %}">Update {{user.sellerprofile.shelffour.shelf_name}} Info</a></h2>
+            						</div>
+            						<img class="rounded-circle account-img" src="{{user.sellerprofile.shelffive.image.url}}">
+            						<div class="media-body">
+            							<h2><a class="btn btn-outline-info" href="{% url 'itemsfive' user.store_name user.sellerprofile.shelffive.pk user.sellerprofile.shelffive.slug %}">{{user.sellerprofile.shelffive.shelf_name}}</a></h2>
+                                        <p class="btn btn-outline-success">UNLIMITED</p>
+                                        <h3><mark class="text-danger">Category: <b class="text-info">{{user.sellerprofile.shelffive.shelf_category}}</b></mark></h3>
+                                        <h2><a class="btn btn-warning" href="{% url 'shelffive-update' %}">Update {{user.sellerprofile.shelffive.shelf_name}} Info</a></h2>
+            						</div>
+            					</div>
+            				</div>
+                        {% endif %}
+                    {% endif %}
+        		</div>
+        	</div>
+        </div>
+
+
+    	<!-- start upgrade -->
+
+    	<div class="my-account-box-main">
+            <div class="contact-info-left">
+                <div class="container">
+                    <div class="my-account-page">
+                        <div class="row">
+                            <div class="bottom-box">
+                            <div class="row">
+                            	<div class="col-lg-12">
+                                    <h3 class="text-danger">SHELFS ARE WHERE YOU UPLOAD YOUR PRODUCT AND ARE SHOWN TO BUYERS LOOKING FOR A PRODUCTS IN ITS CATEGORY</h3>
+                                    {% if not user.sellerprofile.is_diamond %}
+                                		<p><h4>Upgrade your account to get more shelfs</h4></p>
+            							<div>
+            								{% if user.sellerprofile.is_free %}
+            									<h5><a class="btn btn-warning" href="#">Upgrade to a<b>Premium Account for 3 shelfs</b></a></h5>
+            									<h5><p><a class="btn btn-success " href="#">Upgrade to a<b>Diamond Account for 5 shelfs</b></a></p></h5>
+            								{% elif user.sellerprofile.is_premium %}
+            									<h5><p><a class="btn btn-success " href="#">Upgrade to a<b>Diamond Account for 5 shelfs</b></a></p></h5>
+            								{% endif %}
+            							</div>
+                                    {% endif %}
+                            		<div class="title-all text-center">
+                                		<h1>Accounts Status  Details</h1>
+                            		</div>
+                        		</div>
+                                <div class="col-lg-4 col-md-12">
+                                    <div class="account-box">
+                                        <div class="service-box">
+                                            <div class="service-desc">
+                                                <h4>FREE SELLER ACCOUNT properties</h4>
+                                                <div class="ml-auto">
+                                                    <li><b>* 50 product cards per month</b></li>
+                                                    <li><b>* You only have access to small audience</b></li>
+                                                    <li><b>* recieve max 15 orders per month </b></li>
+                                                    <li><b>* reviews from customers are disabled</b></li>
+                                                    <li><b>* You have one-seventh probability of being picked for seller of the month</b></li>
+                                                    <li><b>* Its completely free</b></li>
+                                                    <li><b>* only a single shelf in your store </b></li>
+                                                    <li><b>* 30 and 15 seconds advert video is disabled</b></li>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-12">
+                                    <div class="account-box">
+                                        <div class="service-box">
+                                            <div class="service-desc">
+                                                <h4>PREMIUM SELLER ACCOUNT properties</h4>
+                                                <div class="ml-auto">
+                                                    <li><b>* 50 product cards on first shelf,75 on the rest a month i.e 200</b></li>
+                                                    <li><b>* You only have access to larger audience</b></li>
+                                                    <li><b>* recieve max 40 orders per month </b></li>
+                                                    <li><b>* reviews from customers are enabled</b></li>
+                                                    <li><b>* You have one-fifth probability of being picked for seller of the month</b></li>
+                                                    <li><b>* Its costs $25 per month</b></li>
+                                                    <li><b>* you get to have a max of 3 shelfs with different categories each  in your store</b></li>
+                                                    <li><b>* 15 seconds advert video is enabled</b></li>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-12">
+                                    <div class="account-box">
+                                        <div class="service-box">
+                                            <div class="service-desc">
+                                                <h4>DIAMOND SELLER ACCOUNT properties</h4>
+                                                <div class="ml-auto">
+                                                    <li><b>* 50 product cards on first shelf,75 on the second and third shelf a month i.e 200</b></li>
+                                                    <li><b>* 1000 product cards each on fourth and fifth shelf</b></li>
+                                                    <li><b>* You only have access to audiences all over the world</b></li>
+                                                    <li><b>* recieve unlimited orders per month </b></li>
+                                                    <li><b>* reviews from customers are enabled</b></li>
+                                                    <li><b>* You have one-third probability of being picked for seller of the month</b></li>
+                                                    <li><b>* Its costs $85 per month</b></li>
+                                                    <li><b>* you get max of 5 shelfs with different categories each in your store</b></li>
+                                                    <li><b>* 30 seconds advert video is enabled</b></li>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    	<!-- Start Blog  -->
+        {% if postsize >= 3 %}
+            <div class="latest-blog">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="title-all text-center">
+                                <p><a class="btn btn-danger" href="{% url 'adminposts' %}">Click To View All Admin Posts</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <h2 class="text-center"><p class="text-info">Latest Admin Posts</p></h2>
+                    <div class="row">
+                        {% for posta in latestposts %}
+                            <div class="col-md-6 col-lg-4 col-xl-4">
+                                <div class="blog-box">
+                                    <div class="blog-img">
+                                        {% if posta.image is not None %}
+                                            <img class="img-fluid" src="{{posta.image.url}}" alt="" />
+                                        {% endif %}
+                                        <h5><a class="text-primary" href="#">{{posta.author}}</a></h5>
+                                        <link rel="stylesheet"  href="{% static 'flags/sprite-hq.css' %}">
+                                        <i class="flag2x {{ posta.author.base_country.flag_css }}"></i>
+                                        <h5>{{posta.author.base_country.name}}</h5>
+                                    </div>
+                                    <div class="blog-content">
+                                        <div class="title-blog">
+                                            <h3>{{posta.title}}</h3>
+                                            <h6>{{posta.summary}}</h6>
+                                            <button class="btn btn-hover" href="{url 'adminpost_detail' }" >View Post</button>
+                                        </div>
+                                        <ul class="option-blog">
+                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Likes"><i class="far fa-heart"></i></a></li>
+                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Views"><i class="fas fa-eye"></i></a></li>
+                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Comments"><i class="far fa-comments"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <!-- End Blog  -->
+        {% endif %}
+    </div>
+
+{% endblock content %}

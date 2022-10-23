@@ -1,0 +1,39 @@
+{% extends 'amweb/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+	<div class="content-section">
+		<div class="media">
+			<img class="rounded-circle account-img" src="{{user.image.url}}">
+			<div class="media-body">
+				<h2 class="account-heading">{{user.username}}</h2>
+				<p class="text-secondary">{{user.email}}</p>
+				<p><a class="btn btn-warning" href="{% url 'buyer-profile-update' %}">Update Profile Info</a></p>
+			</div>
+		</div>
+		<link rel="stylesheet"  href="{% static 'flags/sprite-hq.css' %}">
+		<i class="flag2x {{ user.base_country.flag_css }}"></i>
+		<h2>{{user.base_country.name}}</h2>
+		<p>Username</p>
+		<h3 class="text-primary">{{user.username}}</h3>
+		<p>Email</p>
+		<h3 class="text-primary">{{user.email}}</h3>
+		<p>Firstname</p>
+		<h3 class="text-primary">{{user.first_name}}</h3>
+		<p>Lastname</p>
+		<h3 class="text-primary">{{user.last_name}}</h3>
+		<p>Mobile-number</p>
+		<h3 class="text-primary">{{user.mobile_number}}</h3>
+		<p>City</p>
+		<h3 class="text-primary">{{user.city}}</h3>
+		<p>Address</p>
+		<h3 class="text-primary">{{user.address}}</h3>
+		{% if user.address2 != 'optional' %}
+			<p>Address2</p>
+			<h3 class="text-primary">{{user.address2}}</h3>
+		{% endif %}
+		<div class="col-md-12">
+			<p><a class="btn btn-warning" href="{% url 'buyer-profile-update' %}">Update Profile Info</a></p>
+		</div>
+	</div>
+{% endblock content %}

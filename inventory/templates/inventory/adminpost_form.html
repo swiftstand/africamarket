@@ -1,0 +1,19 @@
+{% extends 'amweb/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+	<div class="container">
+		<div class="content-section">
+			<form method="POST">
+				{% csrf_token %}
+				<fieldset class="form-group">
+					<legend class="btn btn-danger"> Add A Product To Your Shelf</legend>
+					{{form|crispy}}
+				</fieldset>
+				<div class="form-group">
+					<button class="btn btn-outline-danger" type="submit">Create Product Card</button>
+				</div>
+			</form>
+		</div>
+	</div>
+{% endblock content %}

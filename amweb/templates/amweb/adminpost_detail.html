@@ -1,0 +1,29 @@
+{% extends 'amweb/base.html' %}
+{% load static %}
+
+
+{% block content %}
+	<div class="container">
+		<article class="media content-section">
+			<img class="rounded-circle article-img" src="{{object.author.adminprofile.image.url}}">
+		  	<div class="media-body">
+			    <div class="article-metadata">
+			      <h5> By <a class="text-info" href="#">{{ object.author.adminprofile.alias }}</a></h5>
+			      <link rel="stylesheet"  href="{% static 'flags/sprite-hq.css' %}">
+                  <i class="flag2x {{ posta.author.base_country.flag_css }}"></i>
+			      <p class="text-secondary">{{object.author.email}}</p>
+			      <small class="text-muted">{{ object.date_posted }}</small>
+			      <h5 class="text-warning" >Summary</h5>
+			      <p class="text-secondary"> {{object.summary}} </p>
+			    </div>
+			</div>
+		    {% if object.image is not None %}
+		    	<img src="{{object.image.url}}">
+		    {% endif %}
+		</article>
+	</div>
+	<div class="container">
+		<h2 class="article-title">{{ object.title }}</h2>
+		<p class="article-content">{{ object.content }}</p>
+	</div>
+{% endblock content %}

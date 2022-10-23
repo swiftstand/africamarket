@@ -1,0 +1,79 @@
+{% extends 'amweb/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+	<div class="content-section">
+			<div class="contact-info-left">
+				<div class="media">
+					<img class="rounded-circle account-img" src="{{user.image.url}}">
+					<div class="media-body">
+						{% if user.sellerprofile.is_free %}
+							<p><h2 class="text-danger">{{user.sellerprofile.account_status}}</h2></p>
+						{% elif user.sellerprofile.is_premium %}
+							<p><h2 class="text-warning">{{user.sellerprofile.account_status}}</h2></p>
+						{% elif user.sellerprofile.is_diamond %}
+							<p><h2 class="text-success">{{user.sellerprofile.account_status}}</h2></p>
+						{% endif %}
+						<h2 class="account-heading">{{user.username}}</h2>
+						<p class="text-secondary">{{user.email}}</p>
+						{% if user.sellerprofile.about_store != 'optional' %}
+							<p>{{user.sellerprofile.about_store}}</p>
+						{% endif %}
+						<p><a class="btn btn-warning" href="{% url 'seller-profile-update' %}">Update Profile Info</a></p>
+						{% if user.sellerprofile.user.store_name is None %}
+							<p class="text-danger">update profile info to set <b>store name</b></p>
+						{% endif %}
+					</div>
+				</div>
+				<link rel="stylesheet"  href="{% static 'flags/sprite-hq.css' %}">
+				<i class="flag3x {{ user.base_country.flag_css }}"></i>
+				<h2>{{user.base_country.name}}</h2>
+				<div class="media">
+					{% if user.sellerprofile.is_free %}
+						<a class="btn-warning " href="#">Upgrade to a<b><p>Premium Account</p></b></a>
+						<a class="btn-success " href="#">Upgrade to a<b><p>Diamond Account</p></b></a>
+					{% elif user.sellerprofile.is_premium %}
+						<a class="btn-success " href="#">Upgrade to a<b><p>Diamond Account</p></b></a>
+					{% endif %}
+				</div>
+				<p>Username</p>
+				<h3 class="text-primary">{{user.username}}</h3>
+				<p>Email</p>
+				<h3 class="text-primary">{{user.email}}</h3>
+				<p>Firstname</p>
+				<h3 class="text-primary">{{user.first_name}}</h3>
+				<p>Lastname</p>
+				<h3 class="text-primary">{{user.last_name}}</h3>
+				<p>Mobile-number</p>
+				<h3 class="text-primary">{{user.mobile_number}}</h3>
+				<p>City</p>
+				<h3 class="text-primary">{{user.city}}</h3>
+				<p>Store Name</p>
+				<p>Account Status</p>
+				{% if user.sellerprofile.is_free %}
+					<h3 class="text-danger"><b>{{user.sellerprofile.account_status}}</b></h3>
+				{% elif user.sellerprofile.is_premium %}
+					<h3 class="text-warning"><b>{{user.sellerprofile.account_status}}</b></h3>
+				{% elif user.sellerprofile.is_diamond %}
+					<h3 class="text-success"><b>{{user.sellerprofile.account_status}}</b></h3>
+				{% endif %}
+				<p>Store Name</p>
+				{% if user.sellerprofile.user.store_name is None %}
+					<h3 class="text-danger">Not Set</h3>
+				{% else %}
+					<h3 class="text-success">{{user.sellerprofile.user.store_name}}</h3>
+				{% endif %}
+				<p>About Store</p>
+				<h3 class="text-primary">{{user.sellerprofile.about_store}}</h3>
+				<p>Address</p>
+				<h3 class="text-primary">{{user.address}}</h3>
+				{% if user.address2 != 'optional' %}
+					<p>Address2</p>
+					<h3 class="text-primary">{{user.address2}}</h3>
+				{% endif %}
+				<div class="col-md-12">
+					<p><a class="btn btn-warning" href="{% url 'seller-profile-update' %}">Update Profile Info</a></p>
+				</div>
+			</div>
+	</div>
+{% endblock content %}

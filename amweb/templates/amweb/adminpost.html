@@ -1,0 +1,25 @@
+{% extends 'amweb/base.html' %}
+{% load static %}
+{% block content %}
+    	{% for posta in posts %}
+            <div class="container">
+            		<article class="media content-section">
+                        <img class="rounded-circle article-img" src="{{posta.author.image.url}}">
+                        <div class="media-body">
+                            <div class="article-metadata">
+                                <link rel="stylesheet"  href="{% static 'flags/sprite-hq.css' %}">
+                                <i class="flag2x {{ posta.author.base_country.flag_css }}"></i>
+                                <a class="mr-2" href="#">{{ posta.author }}</a>
+                                <small class="text-muted">{{ posta.date_posted }}</small>
+                            </div>
+                            <h2><a class="article-title" href="{% url 'adminpost_detail' posta.slug %}">{{ posta.title }}</a></h2>
+                            <h4 class="text-warning">Post Summary</h4>
+                            <p class="article-content">{{ posta.summary }}</p>
+                            <img class="img-fluid" src="{{posta.image.url}}">
+                            <h4><a class="btn btn-outline-info" href="{% url 'adminpost_detail' posta.slug %}">View Post</a></h4>
+                        </div>
+                    </article>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}

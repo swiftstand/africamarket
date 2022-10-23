@@ -1,0 +1,144 @@
+{% extends 'amweb/base.html' %}
+{% load static %}
+{% block content %}
+    <!-- Start All Title Box -->
+    <div class="all-title-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>My Account</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item active">My Account</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End All Title Box -->
+
+    <!-- Start My Account  -->
+    <div class="my-account-box-main">
+        <div class="container">
+            <div class="my-account-page">
+                <div class="row">
+                    <div class="bottom-box">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-12">
+                            <div class="account-box">
+                                <div class="service-box">
+                                    <div class="service-desc">
+                                        <h4>FREE SELLER ACCOUNT properties</h4>
+                                        <div class="ml-auto">
+                                            <li><b>* 100 product post per month</b></li>
+                                            <li><b>* You only have access to small audience</b></li>
+                                            <li><b>* recieve max 15 orders per month </b></li>
+                                            <li><b>* reviews from customers are disabled</b></li>
+                                            <li><b>* You have one-seventh probability of being picked for seller of the month</b></li>
+                                            <li><b>* Its completely free</b></li>
+                                            <li><b>* only a single shelf in your store </b></li>
+                                            <li><b>* 30 and 15 seconds advert video is disabled</b></li>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12">
+                            <div class="account-box">
+                                <div class="service-box">
+                                    <div class="service-desc">
+                                        <h4>PREMIUM SELLER ACCOUNT properties</h4>
+                                        <div class="ml-auto">
+                                            <li><b>* 150 product post per shelf a month</b></li>
+                                            <li><b>* You only have access to larger audience</b></li>
+                                            <li><b>* recieve max 40 orders per month </b></li>
+                                            <li><b>* reviews from customers are enabled</b></li>
+                                            <li><b>* You have one-fifth probability of being picked for seller of the month</b></li>
+                                            <li><b>* Its costs $25 per month</b></li>
+                                            <li><b>* you get to have a max of 3 shelfs with different categories each  in your store</b></li>
+                                            <li><b>* 15 seconds advert video is enabled</b></li>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12">
+                            <div class="account-box">
+                                <div class="service-box">
+                                    <div class="service-desc">
+                                        <h4>DIAMOND SELLER ACCOUNT properties</h4>
+                                        <div class="ml-auto">
+                                            <li><b>* indefinite product post per month on all shelfs</b></li>
+                                            <li><b>* You only have access to audiences all over the world</b></li>
+                                            <li><b>* recieve unlimited orders per month </b></li>
+                                            <li><b>* reviews from customers are enabled</b></li>
+                                            <li><b>* You have one-third probability of being picked for seller of the month</b></li>
+                                            <li><b>* Its costs $85 per month</b></li>
+                                            <li><b>* you get max of 5 shelfs with different categories each in your store</b></li>
+                                            <li><b>* 30 seconds advert video is enabled</b></li>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12">
+                            <div class="account-box">
+                                <div class="service-box">
+                                    <div class="service-icon">
+                                        <a href="{% url 'register-seller' %}"> <i class="fa fa-store"></i> </a>
+                                    </div>
+                                    <div class="service-desc">
+                                        <h4><a href="{% url 'register-seller' %}">Register a seller account</a></h4>
+                                        <h6>Own a store today and showcase your products accross africa </h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12">
+                            <div class="account-box">
+                                <div class="service-box">
+                                    <div class="service-icon">
+                                        <a href="{% url 'login_seller' %}"><i class="fa fa-store"></i> </a>
+                                    </div>
+                                    <div class="service-desc">
+                                        <h4><a href="{% url 'login_seller' %}">Sign In to your seller account</a></h4>
+                                        <h6><i>NOTE</i>: If you don't have a seller account you have to register first</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12">
+                            <div class="account-box">
+                                <div class="service-box">
+                                    <div class="service-icon">
+                                        <a href="{% url 'register-buyer' %}"> <i class="fa fa-shopping-bag"></i> </a>
+                                    </div>
+                                    <div class="service-desc">
+                                        <h4><a href="{% url 'register-buyer' %}">Create a buyer's Account</a></h4>
+                                        <h6>Register a new buyer's account  to enjoy store discounts offers and get  star rated for your purchases</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12">
+                            <div class="account-box">
+                                <div class="service-box">
+                                    <div class="service-icon">
+                                        <a href="{% url 'login_buyer' %}"> <i class="fa fa-shopping-bag"></i> </a>
+                                    </div>
+                                    <div class="service-desc">
+                                        <h4><a href="{% url 'login_buyer' %}">Sign In to your buyer's Account</a></h4>
+                                        <h6>Sign in to get acces to full products within and beyond your region and to make use of available discounts</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End My Account -->
+
+{% endblock content %}
+
